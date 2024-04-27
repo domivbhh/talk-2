@@ -4,6 +4,7 @@ const dotenv=require('dotenv')
 const connectDb=require('./config/db.js')
 const colors=require('colors');
 const userRoutes=require('./routes/userRoutes.js')
+const{errorHandler,notFound}=require('./middleware/errorMiddleware.js')
 
 
 connectDb()
@@ -33,6 +34,9 @@ app.get('/api/chats/:id',(req,res)=>{
 
 
 app.use('/api/user',userRoutes)
+
+app.use(notFound)
+app.use(errorHandler)
 
 
 app.listen(5000,console.log('server on port 5000'.yellow.bold))
