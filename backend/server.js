@@ -3,11 +3,13 @@ const { chats } = require('./data/data.js');
 const dotenv=require('dotenv')
 const connectDb=require('./config/db.js')
 const colors=require('colors');
+const userRoutes=require('./routes/userRoutes.js')
 
 
 connectDb()
 
 const app=express()
+app.use(express.json())
 dotenv.config()
 
 const port=process.env.PORT||5000
